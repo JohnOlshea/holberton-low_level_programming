@@ -7,6 +7,11 @@
  */
 int main(void)
 {
-	printf("with proper grammar, but the outcome is a piece of art,\n");
+	char i;
+
+	for (i = 'a'; i <= 'z'; i++)
+		if (i != 'q' && i != 'e')
+			putchar(i);
+	putchar('\n');
 	return (0);
 }
