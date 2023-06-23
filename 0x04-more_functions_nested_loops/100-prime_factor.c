@@ -30,7 +30,9 @@ int main (void)
 	}
 
 	if (n > 2)
+	{
 		max = n;
+	}
 
 	printf("%ld\n", max);
 
