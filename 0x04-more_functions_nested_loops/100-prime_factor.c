@@ -4,8 +4,9 @@
 /**
  * main - prints the largest prime factor of the number 612852475143
  *
+ * Return: Alsways 0 (Success)
  */
-int main (void)
+int main(void)
 {
 	long int n;
 	long int max;
