@@ -4,7 +4,7 @@
  *
  * @s: string
  *
- * Return: Always 0 (Success)
+ * Return: String
  */
 char *string_toupper(char *s)
 {
@@ -12,7 +12,7 @@ char *string_toupper(char *s)
 
 	while (*(s + 1) != '\0')
 	{
-		if (*(s + 1) >= 'a' && *(s + 1) <= 'z')
+		if (*(s + 1) >= 97 && *(s + 1) <= 122)
 		{
 			*(s + 1) = *(s + i) - 32;
 		}
