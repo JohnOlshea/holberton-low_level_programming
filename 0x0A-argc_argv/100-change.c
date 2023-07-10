@@ -1,43 +1,6 @@
 #include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
-#include <stdbool.h>
-
-/**
- * coinConverter - helper fxn
- * @i: variable
- *
- * Return: coin no.
- */
-int coinConverter(int i)
-{
-	int count = 0;
-
-	while (i != 0)
-	{
-		if (i % 10 == 9 || i % 10 == 7)
-			i -= 2;
-		else if (i % 25 == 0)
-			i -= 25;
-		else if (i % 10 == 0)
-			i -= 10;
-		else if (i % 5 == 0)
-			i -= 5;
-		else if (i % 2 == 0)
-		{
-			if (i % 10 == 6)
-				i -= 1;
-			else
-				i -= 2;
-		}
-		else
-			i -= 1;
-		count++;
-	}
-
-	return (count);
-}
 
 /**
  * main - prints the minimum number of coins
@@ -46,9 +9,12 @@ int coinConverter(int i)
  *
  * Return: 0 on Success
  */
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
-	int i, c = 0;
+	int tot, c;
+	unsigned int i;
+	char *p;
+	int cents[] = {25, 10, 5, 2};
 
 	if (argc != 2)
 	{
@@ -56,15 +22,31 @@ int main(int argc, char *argv[])
 		return (1);
 	}
 
-	i = atoi(argv[1]);
+	tot = strtol(argv[1], &p, 10);
+	c = 0;
 
-	if (i < 0)
-		printf("0\n");
+	if (!*p)
+	{
+		while (tot > 1)
+		{
+			for (i = 0; i < sizeof(cents[i]); i++)
+			{
+				if (tot >= cents[i])
+				{
+					c += tot / cents[i];
+					tot = tot % cents[i];
+				}
+			}
+		}
+		if (tot == 1)
+			c++;
+	}
 	else
 	{
-		c = coinConverter(i);
-		printf("%d\n", c);
+		printf("Error\n");
+		return (1);
 	}
 
+	printf("%d\n", c);
 	return (0);
 }
